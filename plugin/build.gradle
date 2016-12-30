@@ -1,9 +1,18 @@
+plugins {
+    id "com.jfrog.bintray" version "1.6"
+}
+
 apply plugin: 'groovy'
 apply plugin: 'maven'
+
+if (file("../../publish.gradle").exists()) {
+    apply from: "../../publish.gradle"
+}
 
 dependencies {
     compile gradleApi()
     compile localGroovy()
+    testCompile "junit:junit:4.11"
 }
 
 repositories {
@@ -29,4 +38,4 @@ task wrapper(type: Wrapper) {
 }
 
 group='org.swissphpfriends'
-version='0.1-SNAPSHOT'
+version='0.1'

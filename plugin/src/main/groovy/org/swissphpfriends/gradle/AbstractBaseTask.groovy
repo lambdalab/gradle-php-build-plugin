@@ -14,7 +14,8 @@ abstract class AbstractBaseTask extends DefaultTask {
     protected SystemDependencies systemDependencies = new SystemDependencies();
 
     protected void checkPhpInstallation() {
-        if (!this.systemDependencies.hasExecutableInPath('php')) {
+        String exe = (System.getProperty("os.name").contains("Windows")) ? 'php.exe' : 'php';
+        if (!this.systemDependencies.hasExecutableInPath(exe)) {
             throw new RuntimeException('PHP seems not installed or not available in PATH!')
         }
     }
